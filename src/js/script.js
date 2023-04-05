@@ -83,9 +83,6 @@
     initAccordion() {
       const thisProduct = this;
 
-      //const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-
-      //clickableTrigger.addEventListener('click', function (event) {
       thisProduct.accordionTrigger.addEventListener('click', function (event) {
         event.preventDefault();
 
@@ -130,21 +127,21 @@
         for (let optionId in param.options) {
           const option = param.options[optionId];
           console.log(optionId, option);
-
-          if (formData[paramId] && formData[paramId].includes(optionId)) {
-            if (!param.options[optionId].default == true) {
-              price += param.options[optionId].price;
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+          if (optionSelected) {
+            if (!option.default) {
+              price += option.price;
             }
           } else {
-            if (param.options[optionId].default == true) {
-              price -= param.options[optionId].price;
+            if (option.default) {
+              price -= option.price;
             }
           }
 
           const activeImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
           // console.log('Image:', activeImage);
           if (activeImage) {
-            if (formData[paramId] && formData[paramId].includes(optionId)) {
+            if (optionSelected) {
               activeImage.classList.add(classNames.menuProduct.imageVisible);
             }
             else {
