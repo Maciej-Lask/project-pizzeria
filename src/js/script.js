@@ -176,8 +176,8 @@
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
       // Dlaczego tak i dlaczego to nie by³o napisane
-      //thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder());
-      thisProduct.amountWidgetElem.addEventListener('updated', () => thisProduct.processOrder());
+      thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder);
+      //thisProduct.amountWidgetElem.addEventListener('updated', () => thisProduct.processOrder());
     }
     initAccordion() {
       const thisProduct = this;
@@ -347,32 +347,24 @@
     }
     update() {
       const thisCart = this;
-      const deliveryFee = settings.cart.defaultDeliveryFee;
+      let deliveryFee = settings.cart.defaultDeliveryFee;
       let totalNumber = 0;
       let subtotalPrice = 0;
       for (let product of thisCart.products) {
         totalNumber += product.amount;
         subtotalPrice += product.price;
       }
-      if (totalNumber > 0) {
-        thisCart.totalPrice = subtotalPrice + deliveryFee;
-        thisCart.dom.totalNumber.innerHTML = totalNumber;
-        thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
-        thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
-        for (let totalPriceSpot of thisCart.dom.totalPrice) {
-          totalPriceSpot.innerHTML = thisCart.totalPrice;
-        }
-        thisCart.dom.deliveryFee.innerHTML = deliveryFee;
-      } else {
-        thisCart.totalPrice = 0;
-        thisCart.dom.totalNumber.innerHTML = 0;
-        thisCart.dom.subtotalPrice.innerHTML = 0;
-        thisCart.dom.totalPrice.innerHTML = 0;
-        for (let totalPriceSpot of thisCart.dom.totalPrice) {
-          totalPriceSpot.innerHTML = 0;
-        }
-        thisCart.dom.deliveryFee.innerHTML = 0;
+      if (!totalNumber) {
+        deliveryFee = 0;
       }
+      thisCart.totalPrice = subtotalPrice + deliveryFee;
+      thisCart.dom.totalNumber.innerHTML = totalNumber;
+      thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
+      thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
+      for (let totalPriceSpot of thisCart.dom.totalPrice) {
+        totalPriceSpot.innerHTML = thisCart.totalPrice;
+      }
+      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
     }
   }
 
