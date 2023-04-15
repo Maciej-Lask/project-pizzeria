@@ -82,9 +82,7 @@
 
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
-    // CODE ADDED START
     cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
-    // CODE ADDED END
   };
 
   class AmountWidget {
@@ -150,6 +148,8 @@
       const thisProduct = this;
       thisProduct.id = id;
       thisProduct.data = data;
+      console.log(data);
+      console.log(data.price);
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initAccordion();
@@ -178,9 +178,11 @@
     initAmountWidget() {
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
-      // Dlaczego tak i dlaczego to nie by³o napisane
-      thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder);
-      //thisProduct.amountWidgetElem.addEventListener('updated', () => thisProduct.processOrder());
+      //thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder);
+      thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder.bind(thisProduct));
+      //thisProduct.amountWidgetElem.addEventListener('updated', function () {
+      //  thisProduct.processOrder();
+      //});
     }
     initAccordion() {
       const thisProduct = this;
@@ -218,7 +220,8 @@
       const thisProduct = this;
 
       const formData = utils.serializeFormToObject(thisProduct.form);
-
+      console.log(thisProduct.data);
+      console.log(thisProduct.data.price);
       let price = thisProduct.data.price;
 
       for (let paramId in thisProduct.data.params) {
