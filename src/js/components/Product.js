@@ -37,7 +37,7 @@ class Product {
 
     //thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder.bind(thisProduct));
 
-    console.log(thisProduct.data);
+    //console.log(thisProduct.data);
     thisProduct.amountWidgetElem.addEventListener('updated', function () {
       thisProduct.processOrder();
     });
@@ -78,8 +78,6 @@ class Product {
     const thisProduct = this;
 
     const formData = utils.serializeFormToObject(thisProduct.form);
-    //console.log(thisProduct.data);
-    //console.log(thisProduct.data.price);
     let price = thisProduct.data.price;
 
     for (let paramId in thisProduct.data.params) {
@@ -135,7 +133,7 @@ class Product {
       priceSingle: thisProduct.priceSingle,
       price: thisProduct.price,
       params: thisProduct.prepareCartProductParams()
-    };
+    }; 
     return productSummary;
   }
   prepareCartProductParams() {
