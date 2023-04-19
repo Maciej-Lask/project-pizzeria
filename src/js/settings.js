@@ -102,7 +102,7 @@ export const settings = {
     url: '//localhost:3131',
     products: 'products',
     orders: 'orders',
-    
+
     product: 'product',
     order: 'order',
     booking: 'booking',
@@ -131,5 +131,7 @@ export const templates = {
   cartProduct: Handlebars.compile(
     document.querySelector(select.templateOf.cartProduct).innerHTML
   ),
-  bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
+  bookingWidget: Handlebars.compile(
+    document.querySelector(select.templateOf.bookingWidget).innerHTML
+  ),
 };

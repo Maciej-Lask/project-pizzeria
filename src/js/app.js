@@ -2,7 +2,15 @@ import { settings, select, classNames } from './settings.js';
 
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
+import Booking from './components/Booking.js';  
 const app = {
+  initBooking: function () {
+    const thisApp = this;
+    const bookingElem = document.querySelector(select.containerOf.booking);
+    //create a new instance of the Booking class and pass the container we just found to the constructor
+    thisApp.booking = new Booking(bookingElem);
+    console.log('thisApp.booking :>> ', thisApp.booking);
+  },
   initPages: function () {
     const thisApp = this;
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
@@ -93,6 +101,7 @@ const app = {
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
+    thisApp.initBooking();
   },
 };
 

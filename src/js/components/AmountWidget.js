@@ -31,7 +31,7 @@ class AmountWidget {
     thisWidget.maxValue = settings.amountWidget.defaultMax;
 
     let newValue = parseInt(value);
-    /* Add validation*/
+    /*validation*/
     if (thisWidget.value !== newValue && !isNaN(newValue) && newValue >= thisWidget.minValue && newValue <= thisWidget.maxValue) {
       thisWidget.value = newValue;
     }
