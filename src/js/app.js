@@ -9,7 +9,7 @@ const app = {
     const bookingElem = document.querySelector(select.containerOf.booking);
     //create a new instance of the Booking class and pass the container we just found to the constructor
     thisApp.booking = new Booking(bookingElem);
-    console.log('thisApp.booking :>> ', thisApp.booking);
+    //console.log('thisApp.booking :>> ', thisApp.booking);
   },
   initPages: function () {
     const thisApp = this;
@@ -34,9 +34,7 @@ const app = {
         const clickedElement = this;
         event.preventDefault();
         // get page id from href attribute of clicked element
-        // pytanie tak chyba tez można
-        // const id = clickedElement.getAttribute('href').slice(1);
-
+        
         const id = clickedElement.getAttribute('href').replace('#', '');
 
         thisApp.activatePage(id);
