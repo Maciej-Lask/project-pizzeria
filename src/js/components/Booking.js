@@ -11,7 +11,6 @@ class Booking {
     thisBooking.initWidgets();
     thisBooking.getData();
     thisBooking.initActions();
-    console.log('thisBooking.booked :>> ', thisBooking.booked);
   }
   getData() {
     const thisBooking = this;
@@ -72,9 +71,7 @@ class Booking {
         ]);
       })
       .then(function ([bookings, eventsCurrent, eventsRepeat]) {
-        // console.log('bookings :>> ', bookings);
-        // console.log('eventsCurrent :>> ', eventsCurrent);
-        // console.log('eventsRepeat :>> ', eventsRepeat);
+
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }
@@ -240,7 +237,6 @@ class Booking {
   }
   initTables(event) {
     const thisBooking = this;
-    //thisBooking.tables = document.querySelectorAll(select.booking.tables);
     event.preventDefault();
 
     const clickedElement = event.target;
