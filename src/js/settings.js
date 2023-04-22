@@ -43,6 +43,11 @@
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
+    floorPlan: '.floor-plan',
+    submitButton: '.order-confirmation [type="submit"]',
+    phone: '.order-confirmation [type="tel"]',
+    address: '.order-confirmation [type="text"]',
+    starters: '.starters',
   },
   nav: {
     links: '.main-nav a',
@@ -79,7 +84,9 @@ export const classNames = {
   },
   booking: {
     loading: 'loading',
+    table: 'table',
     tableBooked: 'booked',
+    tableNowBooking: 'nowBooking',
   },
   nav: {
     active: 'active',

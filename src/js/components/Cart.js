@@ -69,8 +69,8 @@ class Cart {
     fetch(url, options)
       .then(function (response) {
         return response.json();
-      }).then(function (prasedResponse) {
-        console.log('prasedResponse', prasedResponse);
+      }).then(function (parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
       });
   }
   remove(cartProduct) {

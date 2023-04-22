@@ -188,6 +188,11 @@
         opacity: 0.4;
       }
     }
+    
+    &.nowBooking {
+      background: greenyellow;
+      //opacity: 0.4;
+    }
   }
 
   [data-table='1'] {
