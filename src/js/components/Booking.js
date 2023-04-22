@@ -71,11 +71,9 @@ class Booking {
         ]);
       })
       .then(function ([bookings, eventsCurrent, eventsRepeat]) {
-
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }
-
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
 
@@ -129,7 +127,6 @@ class Booking {
       thisBooking.booked[date][hourBlock].push(table);
     }
   }
-
   updateDOM() {
     const thisBooking = this;
 
@@ -166,7 +163,6 @@ class Booking {
       table.classList.remove(classNames.booking.tableNowBooking);
     });
   }
-
   render(element) {
     const thisBooking = this;
     thisBooking.dom = {};
@@ -192,9 +188,7 @@ class Booking {
     thisBooking.floorPlan = document.querySelector(select.booking.floorPlan);
     thisBooking.dom.phone = document.querySelector(select.booking.phone);
     thisBooking.dom.address = document.querySelector(select.booking.address);
-    thisBooking.dom.starters = document.querySelector(
-      select.booking.starters
-    );
+    thisBooking.dom.starters = document.querySelector(select.booking.starters);
   }
   initWidgets() {
     const thisBooking = this;
@@ -261,7 +255,6 @@ class Booking {
       } else if (
         clickedElement.classList.contains(classNames.booking.tableBooked)
       ) {
-        //if (clickedElement.classList.contains(classNames.booking.tableNowBooking)){
         alert('Table is booked');
         thisBooking.dom.tables.forEach(function (table) {
           table.classList.remove(classNames.booking.tableNowBooking);
@@ -285,6 +278,18 @@ class Booking {
     );
     thisBooking.submitButton.addEventListener('click', function (event) {
       thisBooking.sendBooking(event);
+      //remove class tableNowBooking from all tables
+      thisBooking.dom.tables.forEach(function (table) {
+        table.classList.remove(classNames.booking.tableNowBooking);
+      });
+
+      // add class tableBooked to the booked table
+      thisBooking.booked[thisBooking.date][thisBooking.hour].push(
+        parseInt(thisBooking.selectedTable)
+      );
+      thisBooking.selectedTable = 0;
+      thisBooking.updateDOM();
+
     });
   }
   sendBooking(event) {
@@ -308,7 +313,6 @@ class Booking {
       payload.duration,
       payload.table
     );
-
     const options = {
       method: 'POST',
       headers: {
@@ -324,7 +328,6 @@ class Booking {
         console.log('parsedResponse: ', parsedResponse);
       });
     console.log('payload', payload);
-    
   }
 }
 export default Booking;
