@@ -278,18 +278,6 @@ class Booking {
     );
     thisBooking.submitButton.addEventListener('click', function (event) {
       thisBooking.sendBooking(event);
-      //remove class tableNowBooking from all tables
-      thisBooking.dom.tables.forEach(function (table) {
-        table.classList.remove(classNames.booking.tableNowBooking);
-      });
-
-      // add class tableBooked to the booked table
-      thisBooking.booked[thisBooking.date][thisBooking.hour].push(
-        parseInt(thisBooking.selectedTable)
-      );
-      thisBooking.selectedTable = 0;
-      thisBooking.updateDOM();
-
     });
   }
   sendBooking(event) {
@@ -320,14 +308,35 @@ class Booking {
       },
       body: JSON.stringify(payload),
     };
+
     fetch(url, options)
       .then(function (response) {
+        if (response.ok) {
+          // remove class tableNowBooking from all tables
+          thisBooking.dom.tables.forEach(function (table) {
+            table.classList.remove(classNames.booking.tableNowBooking);
+          });
+
+          // add class tableBooked to the booked table
+          thisBooking.booked[thisBooking.date][thisBooking.hour].push(
+            parseInt(thisBooking.selectedTable)
+          );
+          thisBooking.selectedTable = 0;
+          thisBooking.updateDOM();
+        } else {
+          throw new Error('Network response was not ok');
+        }
         return response.json();
       })
       .then(function (parsedResponse) {
         console.log('parsedResponse: ', parsedResponse);
+      })
+      .catch(function (error) {
+        console.error('Error:', error);
       });
+
     console.log('payload', payload);
+
   }
 }
 export default Booking;

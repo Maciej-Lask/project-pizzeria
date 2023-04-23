@@ -3,7 +3,7 @@ import { settings, select, classNames } from './settings.js';
 import HomePage from './components/Home.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
-import Booking from './components/Booking.js';  
+import Booking from './components/Booking.js';
 const app = {
   initBooking: function () {
     const thisApp = this;
@@ -17,8 +17,8 @@ const app = {
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
 
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    console.log('thisApp.navLinks :>> ', thisApp.navLinks);
     const idFromHash = window.location.hash.replace('#/', '');
-    
 
     let pageMatchingHash = thisApp.pages[0].id;
 
@@ -35,7 +35,7 @@ const app = {
         const clickedElement = this;
         event.preventDefault();
         // get page id from href attribute of clicked element
-        
+
         const id = clickedElement.getAttribute('href').replace('#', '');
 
         thisApp.activatePage(id);
@@ -79,6 +79,31 @@ const app = {
     const thisApp = this;
     const homePageElem = document.querySelector(select.containerOf.homePage);
     thisApp.homePage = new HomePage(homePageElem);
+
+    // Select all links at home section using querySelectorAll
+    thisApp.links = document.querySelectorAll(select.home.panelLinks);
+    console.log('thisApp.links :>> ', thisApp.links);
+    for (let link of thisApp.links) {
+      // Find the closest ancestor element with .link class
+
+      const linkContainer = link.closest('.link');
+
+      if (linkContainer) {
+        linkContainer.addEventListener('click', function (event) {
+          event.preventDefault();
+
+          const href = link.getAttribute('href');
+          if (href.startsWith('#')) {
+            // Create const to extract a part of string (1 mean first string for example booking)
+            const id = href.substring(1);
+            thisApp.activatePage(id);
+            window.location.hash = '#/' + id;
+          } else {
+            window.location.href = href;
+          }
+        });
+      }
+    }
   },
   initCart: function () {
     const thisApp = this;

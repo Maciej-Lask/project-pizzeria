@@ -51,6 +51,9 @@
     address: '.order-confirmation [type="text"]',
     starters: '.starters',
   },
+  home: {
+    panelLinks: 'a.link.sub-title',
+  },
   nav: {
     links: '.main-nav a',
   },

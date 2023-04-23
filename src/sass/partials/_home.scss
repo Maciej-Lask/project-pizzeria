@@ -2,13 +2,16 @@
   text-align: center;
   font-family: 'Lato', sans-serif;
 
+  .infoPanelSection {
+    margin-top: 50px;
+  }
   .sub-title {
     text-align: center;
     font-family: 'Oswald', sans-serif;
     font-weight: 500;
-    padding: 20px;
+    padding: 30px 60px;
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    //margin-bottom: 0;
     transition: transform 0.3s ease-in-out;
 
     &:hover {
@@ -20,37 +23,54 @@
     }
   }
 
-  .infoPanel {
+  a.link.sub-title {
+    text-decoration: none;
+  }
 
+  .orderPanel {
+    background-image: url('/images/home/pizza-1.jpg');
+  }
+
+  .bookingPanel {
+    background-image: url('/images/home/pizza-2.jpg');
+  }
+
+  .infoPanel {
     height: 130px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 10px;
     border: 5px solid lighten($color-dark, 75%);
-    background-color: $color-dark;
+    position: relative;
+    overflow: hidden;
+
+    .hover-text {
+      position: absolute;
+      bottom: -100%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      color: white;
+      padding: 20px;
+      width: 100%;
+      text-align: center;
+      opacity: 0;
+      transition: bottom 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    }
+
+    &:hover .hover-text {
+      bottom: 0;
+      opacity: 1;
+    }
 
     > * {
       color: white;
     }
 
     .sub-title {
-      text-align: center;
-      font-family: 'Oswald', sans-serif;
-      font-weight: 500;
-      padding: 20px;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      transition: transform 0.3s ease-in-out;
-
-      &:hover {
-        transform: translateY(-10px);
-      }
-
-      &:not(:hover) {
-        transform: translateY(0);
-      }
+      @extend .home-page-class, .sub-title;
     }
   }
 
@@ -74,12 +94,41 @@
 }
 
 .main-carousel {
-  min-height: 500px;
+  padding: 100px 0;
+  margin-top: 50px;
+  margin-bottom: 50px;
 
   img {
     width: 200px;
     height: 200px;
     object-fit: cover;
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 18px;
+
+  }
+
+  h3,
+  p {
+    text-align: left;
+  }
+
+  .flickity-page-dots {
+    bottom: 20px;
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: gray;
+      margin: 0 5px;
+    }
+
+    .dot.is-selected {
+      background-color: #333;
+    }
   }
 }
 
@@ -124,6 +173,7 @@
 
       .share-icon {
         margin-left: 10px;
+        color: $color-main;
       }
 
       .heart-icon {
