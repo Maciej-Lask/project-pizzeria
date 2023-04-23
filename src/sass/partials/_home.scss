@@ -5,6 +5,7 @@
   .infoPanelSection {
     margin-top: 50px;
   }
+  
   .sub-title {
     text-align: center;
     font-family: 'Oswald', sans-serif;
@@ -46,6 +47,10 @@
     position: relative;
     overflow: hidden;
 
+    > * {
+      color: white;
+    }
+
     .hover-text {
       position: absolute;
       bottom: -100%;
@@ -65,8 +70,8 @@
       opacity: 1;
     }
 
-    > * {
-      color: white;
+    &:hover .sub-title {
+      transform: translateY(-10px);
     }
 
     .sub-title {
@@ -92,7 +97,6 @@
     }
   }
 }
-
 .main-carousel {
   padding: 100px 0;
   margin-top: 50px;
