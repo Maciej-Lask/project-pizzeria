@@ -24,8 +24,9 @@
     }
   }
 
-  a.link.sub-title {
+  a.link {
     text-decoration: none;
+    padding: 0;
   }
 
   .orderPanel {
@@ -174,16 +175,19 @@
         border-radius: 50%;
         transition: transform 0.3s ease-in-out, font-size 0.3s ease-in-out;
         transform: scale(0.8);
+
+        &:hover {
+          //change color to $color-main 
+          color: $color-main;
+          transition: 0.6s ease-in-out;
+        }
       }
 
       .share-icon {
         margin-left: 10px;
-        color: $color-main;
       }
 
-      .heart-icon {
-        color: red;
-      }
+
     }
 
     &:hover {

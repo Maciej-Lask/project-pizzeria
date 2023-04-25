@@ -52,7 +52,7 @@
     starters: '.starters',
   },
   home: {
-    panelLinks: 'a.link.sub-title',
+    panelLinks: 'a.link',
   },
   nav: {
     links: '.main-nav a',
@@ -111,7 +111,8 @@ export const settings = {
     defaultDeliveryFee: 20,
   },
   db: {
-    url: '//localhost:3131',
+    url:'//' + window.location.hostname +(window.location.hostname == 'localhost' ? ':3131' : ''),
+    //url: '//localhost:3131',
     products: 'products',
     orders: 'orders',
 
